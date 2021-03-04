@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const path = require("path");
 const app = express();
 
 let items = ["Training", "Drink Water", "Do Yoga"];
@@ -7,6 +8,8 @@ let items = ["Training", "Drink Water", "Do Yoga"];
 app.set("view engine", "ejs");
 
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
 	let today = new Date();
