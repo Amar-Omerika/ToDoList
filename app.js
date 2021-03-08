@@ -4,10 +4,10 @@ const date = require(__dirname + "/date.js");
 
 const path = require("path");
 const app = express();
-//Array for items
-var items = ["Training", "Drink Water", "Do Yoga", "Learn"];
 
-var workItems = [];
+let items = ["Training", "Drink Water", "Do Yoga", "Learn"];
+
+let workItems = [];
 
 app.set("view engine", "ejs");
 
