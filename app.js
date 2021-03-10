@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const date = require(__dirname + "/date.js");
-//Path
+
 const path = require("path");
 const app = express();
 
