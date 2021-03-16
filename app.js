@@ -1,19 +1,20 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const date = require(__dirname + "/date.js");
+const mongoose=require("mongoose");
+
 
 const path = require("path");
 const app = express();
 
-const items = ["Training", "Drink Water", "Do Yoga", "Learn"];
 
-const workItems = [];
 
 app.set("view engine", "ejs");
 
 app.use(bodyParser.urlencoded({ extended: true }));
-
 app.use(express.static(path.join(__dirname, "public")));
+
+mongoose.connect("moongodb://localhost:27017/todolistDB", {useNewUrlParser: true});
 
 app.get("/", (req, res) => {
 	const day = date.getDate();
