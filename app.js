@@ -32,6 +32,14 @@ const item3=new Item({
 
 const defaultItems = [item1,item2,item3];
 
+Item.insertMany(defaultItems,function(err){
+	if(err){
+		console.log(err);
+
+	}else{
+		console.log("Success");
+	}
+})
 
 app.get("/", (req, res) => {
 
