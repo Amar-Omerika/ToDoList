@@ -20,9 +20,22 @@ const itemsSchema = {
 }
 const Item = mongoose.model("Item", itemsSchema);
 
+const item1=new Item({
+	name:"Welcome to your todolist."
+});
+const item2=new Item({
+	name:"Hit the + button to aff a new item."
+});
+const item3=new Item({
+	name:"<-- Hit this to delete an item."
+});
+
+const defaultItems = [item1,item2,item3];
+
+
 app.get("/", (req, res) => {
 
-	res.render("list", { listTitle: day, newListItems: items });
+	res.render("list", { listTitle: "Today", newListItems: items });
 });
 app.post("/", (req, res) => {
 	const item = req.body.newItem;
