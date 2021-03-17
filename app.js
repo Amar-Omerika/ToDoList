@@ -24,7 +24,7 @@ const item1 = new Item({
 	name: "Welcome to your todolist.",
 });
 const item2 = new Item({
-	name: "Hit the + button to aff a new item.",
+	name: "Hit the + button to add a new item.",
 });
 const item3 = new Item({
 	name: "<-- Hit this to delete an item.",
@@ -42,13 +42,13 @@ app.get("/", (req, res) => {
 					console.log("Successfully connected to database");
 				}
 			});
-		}
-		else{
+			res.redirect("/");
+		} else {
 			res.render("list", { listTitle: "Today", newListItems: foundItems });
 		}
-});
 	});
 });
+
 app.post("/", (req, res) => {
 	const item = req.body.newItem;
 	if (req.body.list === "Work") {
