@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 const path = require("path");
+const { strict } = require("assert");
 const app = express();
 
 app.set("view engine", "ejs");
@@ -50,14 +51,12 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-	const item = req.body.newItem;
-	if (req.body.list === "Work") {
-		workItems.push(item);
-		res.redirect("/work");
-	} else {
-		items.push(item);
-		res.redirect("/");
-	}
+	const itemName = req.body.newItem;
+	const item = new Item({
+		name: itemName,
+	});
+	item.save();
+	res.redirect("/");
 });
 
 app.get("/work", (req, res) => {
