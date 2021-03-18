@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 
 const path = require("path");
 const { strict } = require("assert");
+const { DEFAULT_MIN_VERSION } = require("tls");
 const app = express();
 
 app.set("view engine", "ejs");
@@ -41,6 +42,7 @@ const List = mongoose.model("List", listSchema);
 
 app.get("/", (req, res) => {
 	Item.find({}, function (err, foundItems) {
+		//gives as back  array as a result
 		if (foundItems.length === 0) {
 			Item.insertMany(defaultItems, function (err) {
 				if (err) {
@@ -78,6 +80,17 @@ app.post("/delete", (req, res) => {
 
 app.get("/:customListName", function (req, res) {
 	const customListName = req.params.customListName;
+	List.findOne({ name: customListName }, function (err, foundList) {
+		//getting object back
+		if (!err) {
+			if (!foundList) {
+				console.log("Doesn't exist!");
+			} else {
+				console.log("Exists");
+			}
+		}
+	});
+
 	const list = new List({
 		name: customListName,
 		items: defaultItems,
