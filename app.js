@@ -33,6 +33,12 @@ const item3 = new Item({
 
 const defaultItems = [item1, item2, item3];
 
+const listSchema = {
+	name: String,
+	items: [itemsSchema],
+};
+const List = mongoose.model("List", listSchema);
+
 app.get("/", (req, res) => {
 	Item.find({}, function (err, foundItems) {
 		if (foundItems.length === 0) {
@@ -70,13 +76,8 @@ app.post("/delete", (req, res) => {
 	});
 });
 
-app.get("/work", (req, res) => {
-	res.render("list", { listTitle: "Work List", newListItems: workItems });
-});
-app.post("/", (req, res) => {
-	const item = req.body.newItem;
-	workItems.push(item);
-	res.redirect("/work");
+app.get("/:customListName", function (req, res) {
+	const customListName = req.params.customListName;
 });
 
 app.listen("3000", (req, res) => {
