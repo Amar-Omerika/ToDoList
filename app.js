@@ -58,6 +58,9 @@ app.post("/", (req, res) => {
 	item.save();
 	res.redirect("/");
 });
+app.post("/delete", (req, res) => {
+	console.log(req.body);
+});
 
 app.get("/work", (req, res) => {
 	res.render("list", { listTitle: "Work List", newListItems: workItems });
