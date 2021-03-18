@@ -84,18 +84,22 @@ app.get("/:customListName", function (req, res) {
 		//getting object back
 		if (!err) {
 			if (!foundList) {
-				console.log("Doesn't exist!");
+				//Create new list
+				const list = new List({
+					name: customListName,
+					items: defaultItems,
+				});
+				list.save();
+				res.redirect("/" + customListName);
 			} else {
-				console.log("Exists");
+				//Show an existing list
+				res.render("list", {
+					listTitle: foundList.name,
+					newListItems: foundList.items,
+				});
 			}
 		}
 	});
-
-	const list = new List({
-		name: customListName,
-		items: defaultItems,
-	});
-	list.save();
 });
 
 app.listen("3000", (req, res) => {
