@@ -92,6 +92,7 @@ app.post("/delete", (req, res) => {
 	}
 });
 
+
 app.get("/:customListName", function (req, res) {
 	const customListName = req.params.customListName;
 	List.findOne({ name: customListName }, function (err, foundList) {
