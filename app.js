@@ -103,7 +103,7 @@ app.post("/delete", (req, res) => {
 });
 
 app.get("/:customListName", function (req, res) {
-	const customListName = _.capitalize(req.params.customListName);
+	const customListName = req.params.customListName;
 	List.findOne({ name: customListName }, function (err, foundList) {
 		//getting object back
 		if (!err) {
