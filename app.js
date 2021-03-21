@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const _ = require("loadash");
 const mongoose = require("mongoose");
 
 const path = require("path");
@@ -102,7 +103,7 @@ app.post("/delete", (req, res) => {
 });
 
 app.get("/:customListName", function (req, res) {
-	const customListName = req.params.customListName;
+	const customListName = _.capitalize(req.params.customListName);
 	List.findOne({ name: customListName }, function (err, foundList) {
 		//getting object back
 		if (!err) {
