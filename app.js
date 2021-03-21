@@ -89,9 +89,17 @@ app.post("/delete", (req, res) => {
 			}
 		});
 	} else {
+		List.findOneAndUpdate(
+			{ name: listName },
+			{ $pull: { items: { _id: checkedItemId } } },
+			function (err, foundList) {
+				if (!err) {
+					res.redirect("/" + listName);
+				}
+			}
+		);
 	}
 });
-
 
 app.get("/:customListName", function (req, res) {
 	const customListName = req.params.customListName;
