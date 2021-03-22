@@ -41,6 +41,7 @@ const listSchema = {
 };
 const List = mongoose.model("List", listSchema);
 
+
 app.get("/", (req, res) => {
 	Item.find({}, function (err, foundItems) {
 		//gives as back  array as a result
