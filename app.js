@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 mongoose.connect(
-	"mongodb+srv://admin-amar:process.env.PW@cluster0.upceh.mongodb.net/todolistDB",
+	"mongodb+srv://admin-amar:password@cluster0.upceh.mongodb.net/todolistDB",
 	{
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
